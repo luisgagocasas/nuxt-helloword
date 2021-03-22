@@ -1,0 +1,30 @@
+<template>
+  <div>
+    <h1>Blog</h1>
+    <v-card max-width="90%" class="mx-auto">
+      <v-list three-line>
+        <nuxt-link v-for="(post, index) in posts" :key="post.id" :to="'/blog/' + post.id">
+          <v-list-item :key="post.title">
+            <v-list-item-avatar>
+              <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg" />
+            </v-list-item-avatar>
+            <v-list-item-content>
+              <v-list-item-title>{{ post.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-divider :key="index" />
+        </nuxt-link>
+      </v-list>
+    </v-card>
+  </div>
+</template>
+
+<script>
+export default {
+  computed: {
+    posts () {
+      return this.$store.getters['posts/getPosts']
+    }
+  }
+}
+</script>
