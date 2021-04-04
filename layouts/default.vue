@@ -1,6 +1,7 @@
 <template>
   <v-app dark>
     <v-navigation-drawer
+      v-if="$strapi.user !== null"
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -26,14 +27,40 @@
     </v-navigation-drawer>
     <v-app-bar
       :clipped-left="clipped"
-      fixed
       app
+      absolute
+      color="#6A76AB"
+      dark
+      shrink-on-scroll
+      prominent
+      src="https://picsum.photos/1920/1080?random"
+      fade-img-on-scroll
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon v-if="$strapi.user !== null" @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
+      <v-spacer />
+      <div v-if="$strapi.user === null">
+        <NuxtLink
+          class="border-r px-3"
+          to="/login"
+        >
+          Login
+        </NuxtLink>
+        <NuxtLink
+          class="border-r px-3"
+          to="/signup"
+        >
+          Signup
+        </NuxtLink>
+      </div>
+      <div v-if="$strapi.user !== null">
+        <v-btn icon @click="logout">
+          <v-icon>mdi-export</v-icon>
+        </v-btn>
+      </div>
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container style="height: 100%;">
         <nuxt />
       </v-container>
     </v-main>
@@ -43,11 +70,17 @@
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
+    <Notifier />
   </v-app>
 </template>
 
 <script>
+import Notifier from '~/components/notifier'
+
 export default {
+  components: {
+    Notifier
+  },
   data () {
     return {
       clipped: false,
@@ -67,6 +100,12 @@ export default {
       ],
       miniVariant: false,
       title: 'Hello Word'
+    }
+  },
+  methods: {
+    async logout () {
+      await this.$strapi.logout()
+      this.$nuxt.$router.push('/')
     }
   }
 }

@@ -1,9 +1,9 @@
-const state = () => ({
+export const state = () => ({
   _posts: [],
   _blog: []
 })
 
-const actions = {
+export const actions = {
   async loadPosts ({ commit }) {
     const { data } = await this.$axios.get('https://jsonplaceholder.typicode.com/posts')
 
@@ -20,7 +20,7 @@ const actions = {
   }
 }
 
-const getters = {
+export const getters = {
   getPosts (state) {
     return state._posts
   },
@@ -29,19 +29,11 @@ const getters = {
   }
 }
 
-const mutations = {
+export const mutations = {
   setPosts (state, posts) {
     state._posts = posts
   },
   setBlog (state, blog) {
     state._blog = blog
   }
-}
-
-export default {
-  namespaced: true,
-  state,
-  mutations,
-  actions,
-  getters
 }
