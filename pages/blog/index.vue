@@ -10,6 +10,7 @@
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>{{ post.title }}</v-list-item-title>
+              <v-list-item-subtitle>{{ post.summary }}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
           <v-divider :key="index" />

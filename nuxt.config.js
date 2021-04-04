@@ -47,6 +47,13 @@ export default {
     '@nuxtjs/strapi'
   ],
 
+  strapi: {
+    url: process.env.API_URL || 'http://localhost:1337',
+    entities: [
+      'blogs'
+    ]
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 

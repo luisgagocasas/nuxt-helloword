@@ -5,15 +5,13 @@ export const state = () => ({
 
 export const actions = {
   async loadPosts ({ commit }) {
-    const { data } = await this.$axios.get('https://jsonplaceholder.typicode.com/posts')
+    const data = await this.$strapi.$blogs.find()
 
     commit('setPosts', data)
   },
   async loadBlog ({ commit, state }, payload) {
-    await this.$axios.get(
-      `https://jsonplaceholder.typicode.com/posts/${payload}/`
-    ).then((data) => {
-      commit('setBlog', data.data)
+    await this.$strapi.$blogs.findOne(payload).then((data) => {
+      commit('setBlog', data)
     }).catch(() => {
       commit('setBlog', null)
     })
