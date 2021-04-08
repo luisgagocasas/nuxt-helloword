@@ -22,6 +22,7 @@
 
 <script>
 export default {
+  middleware: 'private',
   head: {
     title: 'my website title',
     meta: [

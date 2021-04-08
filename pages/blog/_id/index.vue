@@ -32,6 +32,7 @@
 
 <script>
 export default {
+  middleware: 'private',
   computed: {
     blog () {
       return this.$store.getters['posts/getBlog']
