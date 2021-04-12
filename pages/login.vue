@@ -59,7 +59,6 @@ export default {
           password: this.password
         })
         this.$notifier.showMessage({ content: 'Hello, Welcome!', color: 'success' })
-        this.$store.dispatch('auth/loadAuth')
         if (user !== null) {
           this.$nuxt.$router.push('/blog')
         }

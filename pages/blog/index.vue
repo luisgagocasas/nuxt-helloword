@@ -1,6 +1,23 @@
 <template>
   <div>
-    <h1>Blog</h1>
+    <v-breadcrumbs :large="true">
+      <v-breadcrumbs-divider />
+      <v-breadcrumbs-item>
+        <nuxt-link to="/blog">
+          Blog
+        </nuxt-link>
+      </v-breadcrumbs-item>
+      <v-icon
+        :small="true"
+      >
+        mdi-forward
+      </v-icon>
+      <v-breadcrumbs-item>
+        <nuxt-link to="/blog/new">
+          Create a new post
+        </nuxt-link>
+      </v-breadcrumbs-item>
+    </v-breadcrumbs>
     <v-card max-width="90%" class="mx-auto">
       <v-list three-line>
         <nuxt-link v-for="(post, index) in posts" :key="post.id" :to="'/blog/' + post.id">

@@ -2,8 +2,10 @@
   <div v-if="blog">
     <v-breadcrumbs :large="true">
       <v-breadcrumbs-divider />
-      <v-breadcrumbs-item href="/blog">
-        Blog
+      <v-breadcrumbs-item>
+        <nuxt-link to="/blog">
+          Blog
+        </nuxt-link>
       </v-breadcrumbs-item>
       <v-icon
         :small="true"
