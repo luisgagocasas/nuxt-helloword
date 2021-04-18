@@ -24,7 +24,9 @@
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>{{ blog.title }}</v-list-item-title>
-            <v-list-item-content>{{ blog.content }}</v-list-item-content>
+            <!-- eslint-disable vue/no-v-html -->
+            <v-list-item-content v-html="contentMarked" />
+            <!-- eslint-enable -->
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -33,11 +35,16 @@
 </template>
 
 <script>
+import marked from 'marked'
+
 export default {
   middleware: 'private',
   computed: {
     blog () {
       return this.$store.getters['posts/getBlog']
+    },
+    contentMarked () {
+      return marked(this.blog.content)
     }
   },
   created () {

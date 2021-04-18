@@ -62,10 +62,11 @@
             align="center"
             class="mx-0"
           >
-            <v-textarea
+            <VueMarkdownEditor
               v-model="content"
-              light="light"
-              label="Content"
+              height="400px"
+              left-toolbar="undo redo clear | image | h bold italic strikethrough quote | ul ol | table hr | link | code"
+              right-toolbar="preview"
             />
           </v-row>
           <v-card-actions class="pt-0">
@@ -86,9 +87,23 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import VueMarkdownEditor from '@kangc/v-md-editor'
+import '@kangc/v-md-editor/lib/style/base-editor.css'
+import githubTheme from '@kangc/v-md-editor/lib/theme/github.js'
+import '@kangc/v-md-editor/lib/theme/style/github.css'
+import enUS from '@kangc/v-md-editor/lib/lang/en-US'
+
+VueMarkdownEditor.use(githubTheme)
+VueMarkdownEditor.lang.use('en-US', enUS)
+
+Vue.use(VueMarkdownEditor)
 const axios = require('axios')
 
 export default {
+  components: {
+    VueMarkdownEditor
+  },
   middleware: 'private',
   data () {
     return {

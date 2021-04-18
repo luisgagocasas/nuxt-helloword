@@ -13,10 +13,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "@kangc/v-md-editor": "^1.6.1",
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/strapi": "^0.3.1",
     "core-js": "^3.9.1",
+    "marked": "^2.0.3",
     "nuxt": "^2.15.3"
   },
   "devDependencies": {
